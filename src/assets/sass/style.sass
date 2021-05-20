@@ -1,0 +1,301 @@
+@import 'mixins'
+
+html,body
+  margin: 0
+  padding: 0
+  overflow: hidden
+  width: 100%
+  height: 100%
+
+#wrapper
+  width: 100%
+  height: 100%
+  position: relative
+
+.loading
+  position: fixed
+  width: 100%
+  height: 100%
+  background: rgba(#000, 0.5)
+  z-index: 10
+  img
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate3d(-50%, -50%, 0)
+    width: 60px
+
+.panel
+  position: relative
+  width: 100%
+  height: 100%
+
+#container
+  width: 100%
+  height: 100%
+
+.logo
+  position: absolute
+  left: 0
+  top: 0
+  background: #fff
+  +sp
+    max-width: 100px
+  &__link
+    display: block
+    max-width: 200px
+  img
+    width: 100%
+    vertical-align: middle
+
+.panolens-canvas
+  background: #fff
+
+.controller-bar
+  background: rgba(0,0,0,0.3)
+  position: fixed
+  bottom: 0
+  left: 0
+  height: 40px
+  width: 100%
+  padding: 5px 20px
+  box-sizing: border-box
+  +sp
+    padding: 5px
+  &--inner
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    height: 100%
+    +sp
+      justify-content: center
+  &--direction
+    padding-right: 10px
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    height: 100%
+
+.ctrl
+  background: rgba(#fff, 0.5)
+  margin-right: 5px
+  width: 30px
+  height: 30px
+  font-size: 22px
+  display: flex
+  justify-content: center
+  align-items: center
+  color: #333
+  cursor: pointer
+  +max(320px)
+    width: 25px
+    height: 25px
+  &:hover
+    background: rgba(#fff, 1)
+  &-map,
+  &-intro
+    font-size: 12px
+    font-weight: bold
+    text-decoration: none
+    white-space: nowrap
+    width: auto
+    padding: 0 5px
+    text-align: center
+    +sp
+      width: 30px
+      height: 30px
+      font-size: 22px
+      padding: 0
+    +max(320px)
+      width: 25px
+      height: 25px
+      font-size: 20px
+
+.modal
+  position: absolute
+  top: 50%
+  left: 50%
+  max-width: 680px
+  width: 100%
+  transform: translate3d(100%, 100%, 0)
+  opacity: 0
+  visibility: hidden
+  transition: opacity .5s ease
+  max-height: 90%
+  +sp
+    width: 90%
+  &.active
+    transform: translate3d(-50%, -50%, 0)
+    display: block
+    visibility: visible
+    opacity: 1
+  &__close-btn
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 40px
+    height: 40px
+    background: #333
+    color: #fff
+    font-size: 30px
+    border: 2px solid #fff
+    border-radius: 50px
+    position: absolute
+    right: 0
+    top: 0
+    transform: translate3d(50%, -55%, 0)
+    z-index: 1
+    +sp
+      width: 30px
+      height: 30px
+      transform: translate3d(40%, -55%, 0)
+    &:before,
+    &:after
+      content: ''
+      display: block
+      width: 3px
+      height: 25px
+      background: #fff
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate3d(-50%, -50%, 0) rotate(-45deg)
+    &:after
+      transform: translate3d(-50%, -50%, 0) rotate(45deg)
+  &__header
+    position: relative
+  &__inner
+    padding: 30px
+    background: #fff
+    z-index: 0
+    max-height: calc(100vh - 180px)
+    overflow-y: auto
+    +sp
+      padding: 10px
+    &--info
+      overflow-y: auto
+      max-height: 75vh
+      .modal__figure
+        position: relative
+        padding-top: 75%
+
+  &__figure
+    position: relative
+    img
+      width: 100%
+      height: auto
+  &__img
+    position: absolute
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center
+  &__movie
+    position: relative
+    padding-top: 56.25%
+  &__snapwidget
+    position: relative
+    padding-top: 2/3 * 100%
+  &__footer
+    text-align: right
+    padding-bottom: 15px
+
+  &__link
+    text-decoration: none
+    display: inline-block
+    padding: 5px 30px 5px 10px
+    color: #fff
+    background: #333
+    position: relative
+    &:after
+      content: ''
+      display: block
+      position: absolute
+      width: 8px
+      height: 8px
+      top: 50%
+      right: 10px
+      border-right: 2px solid #fff
+      border-bottom: 2px solid #fff
+      transform: translate3d(0, -50%, 0) rotate(-45deg)
+  &--map
+    max-width: 780px
+  &--intro
+    max-width: 680px
+    .modal__figure img
+      width: 100%
+      height: auto
+      max-height: 65vh
+      object-fit: contain
+    .modal__footer
+      background: #fff
+      padding: 0 30px 30px
+  &-overlay
+    position: fixed
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    background: rgba(0,0,0,0.5)
+    display: none
+    &.active
+      display: block
+.map-pin
+  position: absolute
+  font-size: 30px
+  color: #15aabf
+  transform-origin: bottom center
+  &:hover
+    transform: scale(1.1)
+  &.current
+    color: #f45b69
+    &:hover
+      cursor: default
+    &:before
+      content: '現在地'
+      display: block
+      white-space: nowrap
+      font-weight: bold
+      text-shadow: 0 0 2px rgba(#fff, 1),0 0 2px rgba(#fff, 1),0 0 2px rgba(#fff, 1)
+      text-decoration: none
+      font-size: 14px
+      position: absolute
+      top: 0
+      left: 50%
+      transform: translate3d(-50%, -100%, 0)
+
+
+  // &.pin01
+  //   left: 70%
+  //   top: 70%
+  // &.pin02
+  //   left: 50%
+  //   top: 60%
+.snapwidget,
+.youtube
+  position: absolute
+  width: 100%
+  height: 100%
+  left: 0
+  top: 0
+  background: #000
+  iframe
+    position: absolute
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+
+.only-sp
+  display: none
+  +sp
+    display: inherit
+
+.only-pc
+  display: inherit
+  +sp
+    display: none
+
